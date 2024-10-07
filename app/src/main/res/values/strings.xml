@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Market RF</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtTitle">Título</string>
+    <string name="txtBrand">Marca:</string>
+    <string name="txtPublication">Publicación</string>
+    <string name="txtLocation">Ubicación</string>
+    <string name="txtPrice">Precio</string>
+    <string name="txtDescription">Descripción</string>
+    <string name="txtStatus">Estado</string>
+    <string name="txtWidth">Ancho</string>
+    <string name="txtLength">Largo</string>
+    <string name="txtHeight">Altura</string>
+</resources>

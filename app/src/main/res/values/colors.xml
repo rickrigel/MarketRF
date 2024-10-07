@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg_list">#FF587BBD</color>
+    <color name="title">#FFE0F2EE</color>
+    <color name="brand">#FFA0DFF8</color>
+    <color name="publication">#FF48B1E4</color>
+    <color name="price">#FF48B1E4</color>
+    <color name="location">#FF48B1E4</color>
+    <color name="bg_detail">#FF96ABE8</color>
+    <color name="bg_product">#FF1E2746</color>
+</resources>
