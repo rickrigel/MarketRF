@@ -78,7 +78,7 @@ class ProductsListFragment : Fragment() {
             override fun onFailure(p0: Call<MutableList<ProductDto>>, p1: Throwable) {
                 Toast.makeText(
                     requireContext(),
-                    "Error: No hay conexión disponible",
+                    getString(R.string.txtSinConexion),
                     Toast.LENGTH_SHORT
                 ).show()
                 binding.pbLoading.visibility = View.GONE

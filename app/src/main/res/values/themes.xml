@@ -1,14 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 <!-- Base application theme. -->
-<style name="Theme.MarketRF" parent="Theme.Material3.DayNight.NoActionBar">
-    <!-- Customize your light theme here. -->
-    <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-</style>
-<!--
-<style name="Theme.MarketRF" parent="Base.Theme.MarketRF" />
--->
-<style name="SplashTheme" parent="Theme.MarketRF">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
-</style>
+    <style name="Theme.MarketRFApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Splash screen settings -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/product</item>
+        <item name="postSplashScreenTheme">@style/Theme.MarketRFApp.Main</item>
+    </style>
+
+    <style name="Theme.MarketRFApp.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Main app theme -->
+    </style>
+
 
 </resources>

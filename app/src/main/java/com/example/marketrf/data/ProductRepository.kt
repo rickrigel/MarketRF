@@ -11,13 +11,7 @@ class ProductRepository (
 ) {
 
     private val productsApi: ProductsApi = retrofit.create(ProductsApi::class.java)
-/*
-    fun getProducts(url: String?): Call<MutableList<GameDto>> =
-        gamesApi.getGames(url)
 
-    fun getGameDetail(id: String?): Call<GameDetailDto> =
-        gamesApi.getGameDetail(id)
-*/
     //Para Apiary
     fun getProductsApiary(): Call<MutableList<ProductDto>> = productsApi.getProductsApiary()
 

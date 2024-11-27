@@ -1,6 +1,7 @@
 package com.example.marketrf.ui.fragments
 
 import android.graphics.text.LineBreaker
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +9,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import com.example.marketrf.application.MarketRFApp
 import com.example.marketrf.data.ProductRepository
 import com.example.marketrf.data.remote.model.ProductDetailDto
 import com.example.marketrf.databinding.FragmentProductDetailBinding
-import com.example.marketrf.utils.Constants
 import com.bumptech.glide.Glide
+import com.example.marketrf.R
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,11 +34,13 @@ class ProductDetailFragment : Fragment() {
 
     private lateinit var repository: ProductRepository
 
+    private var mediaPlayer2: MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let { args ->
             productId = args.getString(PRODUCT_ID)
-            Log.d(Constants.LOGTAG, "Id recibido $productId")
+            //Log.d(Constants.LOGTAG, "Id recibido $productId")
         }
     }
 
@@ -47,7 +54,13 @@ class ProductDetailFragment : Fragment() {
 
     //Se manda llamar ya cuando el fragment es visible en pantalla
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
         super.onViewCreated(view, savedInstanceState)
+
+        mediaPlayer2 = MediaPlayer.create(requireContext(), R.raw.pop)
+        mediaPlayer2?.start()
+
 
         //Obteniendo la instancia al repositorio
         repository = (requireActivity().application as MarketRFApp).repository
@@ -60,6 +73,8 @@ class ProductDetailFragment : Fragment() {
 
             call.enqueue(object: Callback<ProductDetailDto>{
                 override fun onResponse(p0: Call<ProductDetailDto>, response: Response<ProductDetailDto>) {
+
+
 
                     binding.apply {
                         pbLoading.visibility = View.GONE
@@ -81,12 +96,33 @@ class ProductDetailFragment : Fragment() {
                         tvWidth.text  = response.body()?.width
                         tvLength.text = response.body()?.length
                         tvHeight.text = response.body()?.height
+
+                        // Para cargar el video correspondiente
+                        binding.tvVideo.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+                            override fun onReady(youTubePlayer: YouTubePlayer) {
+                                youTubePlayer.loadVideo(response.body()?.video.toString(), 0f)
+                            }
+                        })
+
+                        lifecycle.addObserver(binding.tvVideo)
+
+
+                        val buttonBack = view.findViewById<Button>(R.id.btn_back)
+                        buttonBack.setOnClickListener {
+                            requireActivity().supportFragmentManager.popBackStack() // Quita el fragmento actual
+                        }
+
                     }
 
                 }
 
                 override fun onFailure(p0: Call<ProductDetailDto>, p1: Throwable) {
                     //Manejo del error de conexión
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.txtSinConexion),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             })

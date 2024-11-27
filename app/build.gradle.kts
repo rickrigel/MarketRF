@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.marketrf"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.marketrf"
@@ -27,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures{
         viewBinding = true
@@ -45,6 +45,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+// Para splash screen
+    implementation(libs.androidx.core.splashscreen)
+
+// Para reproducir videos de Youtube
+    implementation(libs.androidyoutubeplayer.core)
 
 //Para retrofit y Gson
     implementation(libs.retrofit)
@@ -62,6 +68,7 @@ dependencies {
 
 //Imágenes con bordes redondeados
     implementation(libs.roundedimageview)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

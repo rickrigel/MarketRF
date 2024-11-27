@@ -1,34 +1,40 @@
 package com.example.marketrf.ui
 
+import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.marketrf.R
-import com.example.marketrf.data.ProductRepository
-import com.example.marketrf.data.remote.RetrofitHelper
-import com.example.marketrf.data.remote.model.ProductDto
+
 import com.example.marketrf.databinding.ActivityMainBinding
 import com.example.marketrf.ui.fragments.ProductsListFragment
 import com.example.marketrf.utils.Constants
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-/*
-    private lateinit var repository: ProductRepository
-    private lateinit var retrofit: Retrofit
-    */
+
+    private var mediaPlayer: MediaPlayer? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Thread.sleep(2000)
-        setTheme(R.style.Theme_MarketRF)
 
+        // Handle the splash screen transition.
+        installSplashScreen()
+       // val splashScreen = installSplashScreen()
+
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            installSplashScreen()
+        } else {
+            // Implement a traditional splash screen for older versions
+            setContentView(R.drawable.splash_screen)
+        }
+*/
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -39,38 +45,11 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, ProductsListFragment())
                 .commit()
+
+            mediaPlayer = MediaPlayer.create(this, R.raw.intro)
+            mediaPlayer?.start()
         }
 
-/*
-        //Obteniendo la instancia de retrofit
-        retrofit = RetrofitHelper().getRetrofit()
-
-        //Obteniendo el repositorio
-        repository = ProductRepository(retrofit)
-*/
     }
-
-/*
-    fun click(view: View) {
-        val call: Call<MutableList<ProductDto>> = repository.getProductsApiary()
-
-        call.enqueue(object : Callback<MutableList<ProductDto>> {
-            override fun onResponse(
-                call: Call<MutableList<ProductDto>>,
-                response: Response<MutableList<ProductDto>>
-            ) {
-                Log.d(Constants.LOGTAG, "Respuesta del servidor: ${response.body()}")
-            }
-
-            override fun onFailure(p0: Call<MutableList<ProductDto>>, p1: Throwable) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "Error: No hay conexión disponible",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
-    }
- */
 
 }

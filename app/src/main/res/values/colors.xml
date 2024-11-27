@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bg_list">#FF587BBD</color>
+    <color name="splash">#4170CE</color>
     <color name="title">#FFE0F2EE</color>
     <color name="brand">#FFA0DFF8</color>
     <color name="publication">#FF48B1E4</color>

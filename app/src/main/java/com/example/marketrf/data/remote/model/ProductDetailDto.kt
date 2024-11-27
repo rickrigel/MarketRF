@@ -23,7 +23,10 @@ data class ProductDetailDto(
     var length: String? = null,
 
     @SerializedName("height")
-    var height: String? = null
+    var height: String? = null,
+
+    @SerializedName("video")
+    var video: String? = null
 
 )
 
