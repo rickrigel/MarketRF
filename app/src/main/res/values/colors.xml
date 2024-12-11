@@ -11,4 +11,10 @@
     <color name="location">#FF48B1E4</color>
     <color name="bg_detail">#FF96ABE8</color>
     <color name="bg_product">#FF1E2746</color>
+    <color name="titleApp">#8102b7</color>
+    <color name="subtitleApp">#001764</color>
+    <color name="bg_btn_register">#440877</color>
+    <color name="txt_blue">#0E66CC</color>
+    <color name="bar_gray">#707070</color>
+    <color name="txt_blue2">#04336a</color>
 </resources>

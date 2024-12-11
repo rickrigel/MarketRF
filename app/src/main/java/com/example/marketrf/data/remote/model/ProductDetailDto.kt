@@ -26,7 +26,13 @@ data class ProductDetailDto(
     var height: String? = null,
 
     @SerializedName("video")
-    var video: String? = null
+    var video: String? = null,
+
+    @SerializedName("latitude")
+    val latitude: Double,
+
+    @SerializedName("longitude")
+    val longitude: Double
 
 )
 
